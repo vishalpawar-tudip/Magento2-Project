@@ -1,0 +1,11 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="category.products.list">
+            <block name="your.cms.block" as="something" class="Magento\Cms\Block\Block" template="Magento_Catalog::product/list.phtml">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">hydra-products</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

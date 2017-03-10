@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true"/>
+        <referenceBlock name="minicart" remove="true"/>
+        <referenceContainer name="header.panel" remove="true"/>
+        
+       <referenceBlock name="footer_links">
+            <block class="Magento\Framework\View\Element\Html\Link" name="Products" >
+                <arguments>
+                    <argument name="label" xsi:type="string">Products</argument>
+                    <argument name="path" xsi:type="string">products.html</argument>
+                    <argument name="class" xsi:type="string">product-link</argument>
+                </arguments>
+            </block>    
+              <block class="Magento\Framework\View\Element\Html\Link" name="services" after="Products">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Services</argument>
+                    <argument name="path" xsi:type="string">services.html</argument>
+                    <argument name="class" xsi:type="string">product-link</argument>
+                </arguments>
+            </block>
+             <block class="Magento\Framework\View\Element\Html\Link"  name="training-and-resources" after="services">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Training and Resources</argument>
+                    <argument name="path" xsi:type="string">training-and-resources.html</argument>
+                    <argument name="class" xsi:type="string">product-link</argument>
+                </arguments>
+            </block>
+             <block class="Magento\Framework\View\Element\Html\Link" name="who-we-are" after="training-and-resources">
+                <arguments>
+                    <argument name="label" xsi:type="string">Who We Are</argument>
+                    <argument name="path" xsi:type="string">who-we-are.html</argument>
+                    <argument name="class" xsi:type="string">product-link</argument>
+                </arguments>
+            </block>
+              <block class="Magento\Framework\View\Element\Html\Link" name="contact-us-link" after="who-we-are">
+                <arguments>
+                    <argument name="label" xsi:type="string">Contact</argument>
+                    <argument name="path" xsi:type="string">contact.html</argument>
+                    <argument name="class" xsi:type="string">product-link</argument>
+                </arguments>
+            </block>
+
+
+            <block class="Magento\Framework\View\Element\Html\Link" name="catalog" after="contact-us-link">
+                <arguments>
+                    <argument name="label" xsi:type="string">Catalog</argument>
+                    <argument name="path" xsi:type="string">catalog.html</argument>
+                    <argument name="class" xsi:type="string">catalog</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="careers" after="catalog">
+                <arguments>
+                    <argument name="label" xsi:type="string">Careers</argument>
+                    <argument name="path" xsi:type="string">careers.html</argument>
+                    <argument name="class" xsi:type="string">catalog</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="Maintenance-Plans" after="careers">
+                <arguments>
+                    <argument name="label" xsi:type="string">Maintenance Plans</argument>
+                    <argument name="path" xsi:type="string">maintenance-plans.html</argument>
+                    <argument name="class" xsi:type="string">catalog</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Framework\View\Element\Html\Link" name="Store-Locator" after="Maintenance-Plans">
+                <arguments>
+                    <argument name="label" xsi:type="string">Store Locator</argument>
+                    <argument name="path" xsi:type="string">storelocator</argument>
+                    <argument name="class" xsi:type="string">catalog</argument>
+                </arguments>
+            </block>
+            
+            
+
+           <block class="Magento\Framework\View\Element\Html\Link\Current" name="privacy-policy-link" after="contact-us-link" remove="true"/>
+           <block class="Magento\Framework\View\Element\Html\Link\Current" ifconfig="catalog/seo/search_terms" name="search-term-popular-link" after="sales-guest-form-link" remove="true"/>
+           <block class="Magento\Framework\View\Element\Html\Link\Current" name="catalog-search-advanced-link" remove="true"/>
+        <block class="Magento\Sales\Block\Guest\Link" name="sales-guest-form-link" after="catalog-search-advanced-link" remove="true"/>
+ 
+             
+
+       </referenceBlock>
+
+      <referenceContainer name="footer" after="footer_links" before="copyright">
+       <block class="Magento\Cms\Block\Block" name="footer-logo-block" after="footer_links" before="copyright">
+            <arguments>
+                <argument name="block_id" xsi:type="string">footer-logo-block</argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+    </body>
+</page>

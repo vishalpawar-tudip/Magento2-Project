@@ -1,0 +1,90 @@
+<?php
+
+ $_productCollection = $block->getLoadedProductCollection();
+ $_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+
+<?php
+
+
+// $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+// $category = $_objectManager->get('Magento\Framework\Registry')->Registry('current_category');
+//$name=$category->getName();
+//$categories = $this->getStoreCategories(true,false,true);
+//$ID=$catgory->getId();
+//echo "<span>".$ID."</span>";
+// $categoryHelper = $this->getCategoryHelper();
+// $_outputhelper = $this->helper('Magento\Catalog\Helper\Output');
+//$subcats = $this->getChildrenCategories($category);
+//$subcats = $category->getChildrenCategories($category);
+// $_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+ //echo $subcats->getName();
+// echo $subcats->getUrl();
+// echo $category->getName();
+// echo $category->getUrl();
+// echo count($category->getChildrenCategories($category));
+//echo count($block->getSubcategoryListing($category)); 
+?>
+
+<div class="products wrapper grid products-grid subcategories-listing">
+   <div class="title-details">
+     <?php 
+        $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+        $category = $_objectManager->get('Magento\Framework\Registry')->Registry('current_category');
+        $name=$category->getName();
+        //$id=$category->getId();
+        echo '<h1>'.$name.' </h1>';
+        //echo '<h1>'.$id.' </h1>';
+     ?>
+     </div>
+
+      <ol class="products list items product-items">
+         <?php
+            $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $category = $_objectManager->get('Magento\Framework\Registry')->Registry('current_category');
+            $subcats = $category->getChildrenCategories($category);
+            foreach ($subcats as $sub) {
+                $sub->load($sub->getId());
+                $imageUrl=$sub->getImageUrl();
+               //$sub_description=$sub->
+                $categoryUrl=$sub->getUrl();
+                $description=$sub->getDescription();
+
+                echo '<li class="left prduct item">
+                <div class="product-item-info" style="font-weight: bold;">   
+                    <a class="product_item_photo" tabindex="-1" href="'.$categoryUrl.'">
+                     <span class="uppercase-product-name">'.$sub->getName().'</span>
+                    <span class="hyphen-details">-------</span>
+                    <span class="product-image-container">
+                         <span class="product-image-wrapper"><img src="'.$imageUrl.'" alt="Image not found"/></span>   
+                    </span>
+                    <span style="color: #9d9d9d;font-weight: 500;">'.$description.'</span>
+                       
+                    <strong><ol class="product-list-category" style="text-transform: uppercase;">   
+                     '; 
+                     $allProducts=$sub->getProductCollection();
+                      foreach ($allProducts as $singleProduct) {
+                          $singleProduct->load($singleProduct->getId());
+
+                         echo "<a tabindex=-1 href='".$singleProduct->getProductUrl()."?mainCategory=".$singleProduct->getName()."'> 
+                         <li style='color: #9d9d9d;'>
+                            <span>+ ".$singleProduct->getName()."</span>    
+                         </li>
+                         </a>  ";
+                       }
+
+                   echo ' </a>
+                </div>
+                </li>'  ;
+
+            }
+         ?>
+    </ol>
+</div>    
+        
+
+
+
+
+
